@@ -59,7 +59,7 @@ function chDetected = matingalecolor()
     end
 
     for i = 1: frameNum
-        temp = alarm(ps,i,10,0.05);
+        temp = alarm(ps,i,5,0.085);
         if temp ~= -1
             chDetected(1, end + 1) = temp;
         end

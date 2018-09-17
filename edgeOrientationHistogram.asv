@@ -1,4 +1,4 @@
-% block_num：如果划分为8*8（4*4再细分一次），那block_num为8；如果划分为16*16(4*4往再细分两次)，那block_num为16
+% block_num：如果划分为16*16(4*4往)，那block_num为16；如果划分为32*32，那block_num为32
 function [eoh] = edgeOrientationHistogram(Img, block_num)
 
     im = imread(Img);
