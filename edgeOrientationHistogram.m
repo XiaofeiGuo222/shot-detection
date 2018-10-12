@@ -1,4 +1,4 @@
-% block_num：如果划分为8*8（4*4再细分一次），那block_num为8；如果划分为16*16(4*4往再细分两次)，那block_num为16
+% block_num：如果划分为8*8（4*4再细分一次），那block_num为8；如果划分为16*16(4*4再细分两次)，那block_num为16
 function [eoh] = edgeOrientationHistogram(Img, block_num)
 
     im = imread(Img);
@@ -16,8 +16,8 @@ function [eoh] = edgeOrientationHistogram(Img, block_num)
     im_avg = zeros(subblock_num, subblock_num);
     for i = 1 : subblock_num
         for j = 1 : subblock_num
-            sub_im = im((i - 1) * subblock_height + 1:i * subblock_height, (j - 1) * subblock_width + 1:j * subblock_width);
-            im_avg(i, j) = fix(sum(sum(sub_im)) / (subblock_height * subblock_width));
+            sub_im = int8(im((i - 1) * subblock_height + 1:i * subblock_height, (j - 1) * subblock_width + 1:j * subblock_width));
+            im_avg(i, j) = sum(sum(sub_im)) / (subblock_height * subblock_width);
         end
     end
     
@@ -26,10 +26,10 @@ function [eoh] = edgeOrientationHistogram(Img, block_num)
     for b = 1:block_num
         for a = 1:block_num
             edge_filter = zeros(1,5);
-            block_one = int8(im_avg((b - 1) * 2 + 1, (a - 1) * 2 + 1));
-            block_two = int8(im_avg((b - 1) * 2 + 1, (a - 1) * 2 + 2));
-            block_three = int8(im_avg((b - 1) * 2 + 2, (a - 1) * 2 + 1));
-            block_four = int8(im_avg((b - 1) * 2 + 2, (a - 1) * 2 + 2));
+            block_one = im_avg((b - 1) * 2 + 1, (a - 1) * 2 + 1);
+            block_two = im_avg((b - 1) * 2 + 1, (a - 1) * 2 + 2);
+            block_three = im_avg((b - 1) * 2 + 2, (a - 1) * 2 + 1);
+            block_four = im_avg((b - 1) * 2 + 2, (a - 1) * 2 + 2);
             
             edge_filter(1) = abs(block_one - block_two + block_three - block_four); %vertical
             edge_filter(2) = abs(block_one + block_two - block_three - block_four); %horizontal

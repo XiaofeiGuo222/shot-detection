@@ -1,10 +1,24 @@
 clear;
 clc;
 motionSet = load('dat.txt');
-colorSet = matingalecolor();     
-edgeSet = matingaleedge();
+colorSet = martingalecolor();     
+edgeSet = martingaleedge();
 
-unionSet = union(colorSet, edgeSet);
-for i = 1 : length(unionSet)
-    fprintf('Detected at frame %d\n', unionSet(i));
-end
+twoSet = union(colorSet, edgeSet);
+threeSet = deleteNeighbors(3,union(twoSet, motionSet));
+diffTwoThree = setdiff(threeSet, twoSet);
+
+%% test difference
+
+%ocolorSet = load('ocolor.txt');
+%oedgeSet = load('oedge.txt');
+%otwoSet = union(ocolorSet, oedgeSet);
+
+%twodiff = setdiff(twoSet, otwoSet) % in ours twoset but not in theirs
+
+%otwodiff = setdiff(otwoSet, twoSet) % in their twoset but not in ours
+
+
+
+
+

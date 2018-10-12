@@ -1,4 +1,4 @@
-function egDetected = matingaleedge()
+function egDetected = martingaleedge()
     frameNum = 913;
     egDetected = [];
 
@@ -24,7 +24,7 @@ function egDetected = matingaleedge()
         end
 
         % 得到本帧的edge histogram
-        eoh = edgeOrientationHistogram(imgName, 4); % 参数可改成 4/8/16/32
+        eoh = edgeOrientationHistogram(imgName, 16); % 参数可改成 4/8/16/32
 
         %算本帧的alpha
         s = sum(sum(eoh, 1), 2);
@@ -50,7 +50,7 @@ function egDetected = matingaleedge()
 
 
     for i = 1: frameNum
-        temp = alarm(ps,i,5,0.085);
+        temp = alarm(ps,i,5,0.08);
         if temp ~= -1
             egDetected(1, end + 1) = temp;
         end

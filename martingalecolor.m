@@ -1,4 +1,4 @@
-function chDetected = matingalecolor()
+function chDetected = martingalecolor()
 
     frameNum = 913;
     chDetected = [];
@@ -59,7 +59,7 @@ function chDetected = matingalecolor()
     end
 
     for i = 1: frameNum
-        temp = alarm(ps,i,5,0.085);
+        temp = alarm(ps,i,7,0.06);
         if temp ~= -1
             chDetected(1, end + 1) = temp;
         end
